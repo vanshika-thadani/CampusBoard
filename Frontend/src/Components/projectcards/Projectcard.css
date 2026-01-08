@@ -1,0 +1,10 @@
+.projectbooking{
+    align-self: flex-end;
+    padding: 0.5em 1em;
+    background: transparent;
+    color: #1E97C3;
+    border: 1px solid #1E97C3;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}

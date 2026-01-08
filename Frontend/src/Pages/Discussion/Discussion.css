@@ -1,0 +1,111 @@
+#discussion{
+  padding: 0.4em;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+ 
+}
+
+.discussion-container{
+  background-color: #0A0A0A;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 99vh;
+  border: 0.25px solid gray;
+  overflow: hidden;
+}
+.head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  border-bottom: 0.25px solid  gray;
+}
+.mess-content {
+  flex: 1;
+  overflow-y: auto; 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+/* Each message container */
+.message {
+  max-width: 30%;
+  padding: 0.25em 1em;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+}
+
+/* Message text */
+.msg-content {
+  padding: 0.1em 0;
+  font-size: 0.90rem;
+}
+
+/* Message timestamp & sender */
+.message p{
+  opacity: 0.6;
+  margin-top: 0.3rem;
+}
+
+/* Sent (your) messages */
+.message.sent {
+  align-self: flex-end;
+  background-color: #00BFFF;
+  text-align: right;
+  color: white;
+}
+
+/* Received (other) messages */
+.message.received {
+  align-self: flex-start;
+  background-color: #0F1A24;
+  text-align: left;
+  color: white;
+}
+  #discussion form{
+  display: flex;
+  gap:10px;
+  align-items: center;
+  padding: 1em;
+  width: 100%;
+}
+
+.chat-input input {
+  width: 100%;
+  border-radius: 10px;
+  outline: none;
+  border:  2px solid #00BFFF;
+  padding: 1em;
+}
+.Ficon{
+  width: 5%;
+ 
+  cursor: pointer;
+}
+.chat-input button{
+  /* font-size: 1.5rem; */
+  padding: 0.6em;
+  width: 6%;
+  border-radius: 10px;
+  background-color: #00BFFF;
+  color: white;
+  border: none;
+  transition: 0.2s ease-in-out ;
+}
+.chat-input input:hover{
+  box-shadow: 1px 1px 2px #007bff ;
+  border: 3px solid #00BFFF;
+}
+.chat-input button:hover{
+  transition: 0.5s;
+  box-shadow: 2px 2px 10px white;
+}

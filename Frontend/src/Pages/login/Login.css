@@ -1,0 +1,91 @@
+#Login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+}
+#Login h4{
+    opacity: 0.5;
+    margin-bottom: 1em
+}
+
+.Login-heading{
+    text-align: center;
+    margin-bottom: 1em;
+    
+}
+.Login-heading h1{
+    color:#00bfff ;
+    text-shadow: 0px 0px 12px #00bfff;
+}
+.Login-heading p{
+    opacity: 0.7;
+    font-weight: 100;
+}
+#Login form{
+    background-color: #111;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.1);
+    border: 1px solid #222;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+#Login form p{
+    margin: 0.8em 0em;
+    font-weight: 300;
+}
+#Login form h4{
+    margin-bottom: 2.8em;
+    margin-top: 0.5em
+}
+
+#Login input {
+    padding: 0.9rem;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background-color: #0c0c0c;
+    color: #fff;
+    font-size: 1rem;
+    transition: 0.2s ease;
+}
+#Login input::placeholder {
+    color: #888;
+}
+#Login input:focus {
+    border-color: #00bfff;
+    outline: none;
+    box-shadow: 0 0 5px #00bfff;
+}
+#Login button{
+    padding: 0.9em;
+    width: 100%;
+    margin-top: 1.5em;
+    border-radius: 12px;
+    font-size: 1em;
+    color: white;
+    background-color: #00bfff;
+} 
+.Login-bottom{
+    text-align: center;
+    margin-top: 1em;
+}
+.Login-bottom a{
+    text-decoration: none;
+    color: #00bfff;
+    text-shadow:  0px 0px 10px #00bfff;
+}
+.Login-bottom a:hover{
+    text-decoration: underline;
+}
+.google-login {
+  margin-top: 1em;
+  align-self: center;
+  text-align: center;
+}

@@ -1,0 +1,140 @@
+#user{
+   width: 70%;
+   margin: 2em auto;
+}
+.filter-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0F0F0F;
+    margin: 2em 0em;
+    border-radius: 10px;
+}
+.filter-buttons a{
+    padding: 0.7em 2em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #0F0F0F;
+    color: white;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.form-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2em ;
+}
+.header1 h2{
+    color: #00BFFF;
+    margin-bottom: 0.2em;
+}
+.header1 p{
+    opacity: 0.5;
+}
+.header2{
+    text-align: end;
+   
+}
+ .header2  button{
+    padding: 0.5em 0.4em;
+    border-radius: 5px;
+    border: none;
+    color: red;
+    margin-bottom: 0.3em;
+    background-color:  rgba(195, 47, 47, 0.233);
+}
+.header2 input{
+    padding: 0.4em;
+    border-radius: 4px;
+    background-color:#333333;
+    outline: none;
+    border: none;
+    color: white;
+}
+.filter-buttons a:hover {
+    background-color: #1EAEDB;
+    
+}
+.user-container{
+    background-color: #0F0F0F;
+    padding: 2em;
+}
+.user-container form{
+    display: flex;
+    flex-direction: column;
+}
+.userform input{
+    padding: 1em 0.5em;
+    border-radius: 5px;
+    background-color: #333333;
+    border: none;
+    outline: none;
+    color: white;
+}
+.userform input:focus{
+    border: 2px solid #00BFFF;
+}
+.userform p{
+    margin: 1em 0em;
+    font-style: oblique;
+}
+.userform button{
+    width: fit-content;
+    margin-top: 1em;
+    padding: 1em 3em;
+    background-color: #00BFFF;
+    color: white;
+    border: none    ;
+}
+.userform img{
+    width: 30%;
+    border-radius: 8px;
+
+}
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  height: 100vh;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-box {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: bold;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+
+/* .profile-photo-container {
+  display: flex;
+  justify-content: fle;
+  margin-bottom: 1rem;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid orange;
+  object-fit: cover;
+} */

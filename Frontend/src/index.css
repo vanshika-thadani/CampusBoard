@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+a{
+    text-decoration: none;
+}
+body {
+
+    background : radial-gradient(#09323F, #000000);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+#signup{
+    background-color:black;
+    height: 110vh;
+    width: 100vw;
+    padding: 1em; 
+}
+#Login{
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    padding: 1em; 
+}
+.component-container{
+    display: flex;
+    background-color: black;
+}
+
+#getstarted{
+    height: 100vh;
+    width: 100vw;
+}

@@ -1,0 +1,76 @@
+
+
+.carrentalcard {
+  display: flex;
+  width: 100%;
+  gap: 2em;
+  background-color: #0A0A0A;
+  border: 0.25px solid #1E97C3;
+  border-radius: 10px;
+  padding: 1em;
+  cursor: pointer;
+}
+
+.carrentalcard:hover {
+  box-shadow: 0 10px 30px rgba(30, 151, 195, 0.2);
+  border-color: #1E97C3;
+}
+
+.cardimg {
+  max-width: 40%;
+}
+
+.cardimg img {
+  width: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+  background-color: white;
+}
+
+.carrentaldetailscard {
+
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  gap: 0.5em;
+  color: white;
+}
+
+.namecard h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+.amountcard {
+  background-color: #1e97c363;
+  color: #1EAEDB;
+  margin: 1em 0em 0em 0em ;
+  width: fit-content;
+  border: 1px solid #3498DB;
+  border-radius: 5px;
+  padding: 1em;
+  font-size: 0.9rem;
+}
+.cardescriptioncard {
+  opacity: 0.6;
+  font-size: 1.2rem;
+  margin: 0.5em 0;
+}
+.availablecard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1rem;
+}
+.availablecard span {
+  opacity: 0.8;
+}
+.contactownercard {
+  align-self: flex-end;
+  padding: 0.5em 1em;
+  background: transparent;
+  color: #1E97C3;
+  border: 1px solid #1E97C3;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}

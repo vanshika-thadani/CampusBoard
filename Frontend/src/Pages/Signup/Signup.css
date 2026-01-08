@@ -1,0 +1,119 @@
+
+#Signup {
+
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  border: 2px solid black;
+  margin: 0 auto;
+
+}
+#signup h6{
+  text-align: center;
+  margin-top: 1em;
+  font-size: 0.8em;
+  font-weight: 100;
+  opacity: 0.7;
+}
+.heading{
+ padding-top: 0.5em;
+}
+
+.heading h2{
+  text-align: center;
+  color: #00bfff;
+  font-size: 2rem;
+  text-shadow: 0 0 12px #00bfff;
+}
+.heading h4 {
+  opacity: 0.7;
+  font-weight: 100;
+  text-align: center;
+  margin-bottom: 1em;
+}
+#signup form{
+  background-color: #111;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.1);
+  border: 1px solid #222;
+}
+#signup  form h1{
+  font-size: 1.7rem;
+  color: #fff;
+  margin-bottom: 0.2rem;
+}
+#signup  form h4{
+  font-size: 0.95rem;
+  color: #bbb;
+  font-weight: 300;
+  margin-bottom: 2rem; 
+}
+#signup  form p{
+  margin: 0.5em 0em;
+}
+#signup input {
+  padding: 0.8rem;
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background-color: #0c0c0c;
+  color: #fff;
+  font-size: 1rem;
+  transition: 0.2s ease;
+}
+#Signup input::placeholder {
+  color: #888;
+}
+#signup input:focus {
+  border-color: #00bfff;
+  outline: none;
+  box-shadow: 0 0 5px #00bfff;
+}
+#signup button {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #00bfff, #00acee);
+  color: #000;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s ease;
+}
+#signup button:hover {
+  background: linear-gradient(90deg, #009acd, #007faf);
+}
+.Signup-bottom {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #ccc;
+}
+.Signup-bottom a {
+  color:#007faf;
+  text-decoration: none;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 5px;
+  transition: 0.2s ease;
+}
+.Signup-bottom  a:hover {
+  text-decoration: underline;
+}
+
+@media(max-width:800px){
+  #Signup form{
+
+    
+
+    
+  }
+}

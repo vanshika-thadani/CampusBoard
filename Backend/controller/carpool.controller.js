@@ -14,7 +14,7 @@ const getAllCarpools = async (req, res) => {
 
 const postcarpool = async(req,res) =>{
     try {
-        const user = req.user;
+        const user = req.user;//in auth.middleware we do req.user=user so without uath middleware req.user will be undefined
 
         const {from,to,time,seatsAvailable,pricePerSeat} = req.body;
 

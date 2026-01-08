@@ -17,11 +17,11 @@ require('dotenv').config();
 connectDB();
 require("./utils/cloudinary.js");
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_API_URL);
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", process.env.FRONTEND_API_URL);
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   next();
+// });
 
 app.use(cors({
     origin: process.env.FRONTEND_API_URL,
@@ -44,3 +44,20 @@ app.use('/api/messages', messageroutes);
 
 // server 
 module.exports = app;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

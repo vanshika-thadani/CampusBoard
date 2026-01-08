@@ -1,0 +1,224 @@
+#lostnfound {
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+
+}
+.lnf-heading {
+  margin-bottom: 1.2em;
+}
+.lnf-heading h2 {
+  font-size: 2rem;
+  color: #3498db;
+}
+.lnf-heading p {
+  font-size: 1rem;
+  opacity: 0.6;
+}
+/* Report Item Button */
+.report-item {
+  background-color: #3498db;
+  color: #fff;
+  padding: 0.7em ;
+  align-self: flex-end;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 1.2em;
+  font-size: 0.9rem;
+}
+.report-item:hover {
+  background-color: #2980b9;
+}
+.report-item svg {
+  margin-right: 0.6;
+}
+#lostnfound form{
+  width: 100%;
+  background-color: #0F0F0F;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  margin-bottom: 1.5em;
+  border-radius: 8px;
+  border: 1.2px solid #2980b9;
+}
+#lostnfound form  input{
+  margin-bottom: 1em;
+  padding: 1em 0.5em;
+  background-color: #333333;
+  border-radius: 5px;
+  color: white;
+  outline: none;
+  border: none;
+}
+#lostnfound form input,textarea:focus{
+  border: 2px solid #2980b9;
+}
+ #lostnfound form textarea{
+  resize: vertical;
+  outline: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #333333;
+  width: 100%;
+  height: 80px;
+  max-height: 150px;
+}
+#lostnfound form input[type ="file"]{
+  background-color: transparent;
+  border: none;
+}
+.radio-group{
+  margin-top: 1.5em;
+  display: flex;
+  cursor: pointer;
+  gap: 30px;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+.radio-group input{
+  cursor: pointer;
+}
+ form .submit-lnf{
+  padding: 1em;
+  background-color: #3498db;
+  color: white;
+  border-radius: 5px;
+  border: none;
+}
+
+
+
+.search-container {
+  background-color: #0F0F0F;
+  border: 0.25px solid #3498db;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 1em;
+}
+.search-box{
+  width: 100%;
+  background-color: #0F0F0F;
+  outline: none;
+  padding: 1.1em 0em;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+.search-icon{
+  width: 5%;
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.tab-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 0.25px solid #2980b9;
+  margin-bottom: 1em;
+  background-color: #0F0F0F;
+}
+
+.tab {
+  background-color: #0F0F0F;
+  color: #fff;
+  width: 36.3%;
+  padding: 1em 1.6em;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.tab.active {
+  background-color: #3498db;
+}
+.tab:hover {
+  background-color: rgba(39, 39, 39, 0.366);
+}
+.lnf-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  animation: fadeInUp 0.5s ease forwards;
+}
+.lnf-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #0F0F0F;
+  border-radius: 5px;
+  border: 0.25px solid #2980b9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.lnf-img {
+  height: 70%;
+  max-height: 450px;
+  width: 100%;
+  overflow: hidden;
+}
+.lnf-card img {
+  width: 100%;
+  border: 5px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.lnf-details{
+  padding: 1em ;
+}
+.lnf-card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 191, 255, 0.2);
+}
+.contact {
+  background-color: #3498db;
+  color: white;
+  padding: 0.7em;
+  border: none;
+  border-top: 1px solid #2980b9;
+  border-radius: 0 0 5px 5px;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+.contact:hover {
+  background-color: #2980b9;
+}
+.lnf-status {
+  font-weight: bold;
+  padding: 0.2em 0.6em;
+  border-radius: 12px;
+  display: inline-block;
+  margin-top: 0.5em;
+  font-size: 0.85rem;
+}
+
+.lnf-status.lost {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+}
+
+.lnf-status.found {
+  background-color: rgba(0, 255, 0, 0.1);
+  color: #00cc66;
+  border: 1px solid #00cc66;
+}
+
+  
+.upload-image {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+  margin: 0.8em 0;
+  border-radius: 5px;
+  border: 1px solid #2980b9;
+}

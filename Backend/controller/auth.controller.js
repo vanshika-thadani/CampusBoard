@@ -47,7 +47,7 @@ const register = async (req, res) => {
     res.cookie("token", token, {
         httpOnly: true,
         path: "/",
-        secure: true,
+        secure: process.env.NODE_ENV === "production", // ✅ false in dev,
         sameSite: "None"
     });
 
@@ -75,7 +75,7 @@ const login = async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true,
+            secure: process.env.NODE_ENV === "production", // ✅ false in dev,
             sameSite: "None",
             path: "/"
         });
@@ -106,7 +106,7 @@ const logout = async (req, res) => {
 
 const googleLogin = async (req, res) => {
   try {
-    const { email, username, profilePhoto } = req.body;
+    const { email, username, profilePhoto } = req.body;//frontend sends this after google authentication
 
     if (!email || !username || !profilePhoto) {
       return res.status(400).json({ message: "Missing required Google user info" });
