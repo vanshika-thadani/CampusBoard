@@ -12,7 +12,7 @@ import { toast } from 'react-toastify'; // ✅ Toastify import
 import 'react-toastify/dist/ReactToastify.css'; // ✅ Toastify CSS
 
 const Carental = () => {
-  const { carrental, getallcarrentals } = useCarRental();
+  const { carrental, loading, getallcarrentals } = useCarRental();
   const { createcarrental } = useAddcarrental();
   const { refetchResources } = useUserResources();
   const { user } = useGetUser();
@@ -85,7 +85,7 @@ const Carental = () => {
     }
   };
 
-  if (!carrental) {
+  if (loading) {
     return (
       <div className="loader-container">
         <motion.div

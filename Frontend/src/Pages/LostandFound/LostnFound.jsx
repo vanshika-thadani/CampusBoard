@@ -12,7 +12,7 @@ import { toast } from "react-toastify"; // ✅ Toastify import
 import "react-toastify/dist/ReactToastify.css"; // ✅ Toastify CSS
 
 const LostnFound = () => {
-  const { lostAndFound, getallLostnfound } = uselostnfound();
+  const { lostAndFound, loading: lnfLoading, getallLostnfound } = uselostnfound();
   const { createlostnfound } = useAddlostnfound();
   const { refetchResources } = useUserResources();
   const { user, loading } = useGetUser();
@@ -73,7 +73,7 @@ const LostnFound = () => {
     }
   };
 
-  if (loading || !user || !lostAndFound) {
+  if (lnfLoading || !user) {
     return (
       <div className="loader-container">
         <motion.div

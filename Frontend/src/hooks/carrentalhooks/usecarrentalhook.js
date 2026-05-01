@@ -1,20 +1,26 @@
 import axios from "axios";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const useCarRental = () => {
     const [carrental, setcarrental] = useState(null);
-    const getallcarrentals = async() =>{
+    const [loading, setLoading] = useState(true);
+
+    const getallcarrentals = async () => {
         try {
-             const respone = await axios.get(`${BASE_URL}/api/carrental`, {withCredentials:true});
-            setcarrental(respone.data);   
+            setLoading(true);
+            const response = await axios.get(`${BASE_URL}/api/carrental`, { withCredentials: true });
+            setcarrental(response.data);
         } catch (error) {
-            console.error(error.message);            
+            console.error(error.message);
+        } finally {
+            setLoading(false);
         }
-        
     };
-    useEffect(()=>{
-            getallcarrentals();
-        },[])
-    return {getallcarrentals,carrental}
+
+    useEffect(() => {
+        getallcarrentals();
+    }, []);
+
+    return { getallcarrentals, carrental, loading };
 };

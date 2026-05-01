@@ -79,7 +79,7 @@ const Carpool = () => {
     );
   }) || [];
 
-  if (!carpools) {
+  if (loading) {
     return (
       <div className="loader-container">
         <div className="loader"></div>

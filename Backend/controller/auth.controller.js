@@ -47,8 +47,8 @@ const register = async (req, res) => {
     res.cookie("token", token, {
         httpOnly: true,
         path: "/",
-        secure: process.env.NODE_ENV === "production", // ✅ false in dev,
-        sameSite: "None"
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax"
     });
 
     return res.status(201).json(newUser);
@@ -75,8 +75,8 @@ const login = async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production", // ✅ false in dev,
-            sameSite: "None",
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
             path: "/"
         });
 
@@ -92,8 +92,8 @@ const logout = async (req, res) => {
     try {
         res.clearCookie("token", {
             httpOnly: true,
-            secure: true,
-            sameSite: "None",
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
             path: "/"
         });
 
@@ -135,8 +135,8 @@ const googleLogin = async (req, res) => {
     // ✅ Set production-ready cookie
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true, // ✅ Required on HTTPS (Render)
-      sameSite: "None", // ✅ Required for cross-site cookie
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
 

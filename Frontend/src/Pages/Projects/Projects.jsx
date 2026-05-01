@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css'; // ✅ Toastify CSS
 
 const Projects = () => {
   const [searchquery, setsearchquery] = useState("");
-  const { projects, setprojects, getallprojects } = useprojects();
+  const { projects, setprojects, loading, getallprojects } = useprojects();
   const { createproject } = useaddprojects();
   const { refetchResources } = useUserResources();
   const { user } = useGetUser();
@@ -68,7 +68,7 @@ const Projects = () => {
     setShowForm(false);
   };
 
-  if (!projects) {
+  if (loading) {
     return (
       <div className="loader-container">
         <div className="loader"></div>

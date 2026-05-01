@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Inbox.css';
 import Sidebar from '../../Components/Sidebar/Sidebar';
-import { FaSearch, FaPaperPlane } from "react-icons/fa";
+import { FaSearch, FaPaperPlane, FaEdit } from "react-icons/fa";
 import { FiUpload } from 'react-icons/fi';
 import { useGetUser } from '../../hooks/user/usegetuser';
 import {
@@ -29,18 +29,22 @@ const Inbox = () => {
   const [chatHistory, setChatHistory] = useState({});
   const [onlineUserList, setOnlineUserList] = useState([]);
 
+  // New message search
+  const [showUserSearch, setShowUserSearch] = useState(false);
+  const [userSearchQuery, setUserSearchQuery] = useState('');
+  const [allUsers, setAllUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+
   const messagesEndRef = useRef(null);
   const messages = chatHistory[selectedUserId] || [];
 
-
-// 👇 Add this block to sync props from navigation state
-useEffect(() => {
-  if (selectedReceiver) {
-    setSelectedUserId(selectedReceiver);
-    setSelectedUsername(selectedReceiverUsername);
-  }
-}, [selectedReceiver, selectedReceiverUsername]);
-
+  // Sync from navigation state (Contact button)
+  useEffect(() => {
+    if (selectedReceiver) {
+      setSelectedUserId(selectedReceiver);
+      setSelectedUsername(selectedReceiverUsername);
+    }
+  }, [selectedReceiver, selectedReceiverUsername]);
 
   // Fetch conversations
   useEffect(() => {
@@ -56,6 +60,37 @@ useEffect(() => {
     };
     if (user) fetchConversations();
   }, [user]);
+
+  // Fetch all users for new message search
+  useEffect(() => {
+    const fetchAllUsers = async () => {
+      try {
+        const res = await axios.get(`${BASE_URL}/api/user/all`, {
+          withCredentials: true,
+        });
+        console.log("ALL USERS RESPONSE:", res.data);
+        setAllUsers(res.data);
+        setFilteredUsers(res.data.filter(u => u._id !== user?._id));
+      } catch (err) {
+        console.error("Fetch all users error:", err);
+      }
+    };
+    if (user) fetchAllUsers();
+  }, [user]);
+
+  // Filter users based on search query
+  useEffect(() => {
+    if (!allUsers.length) return;
+    if (userSearchQuery.trim() === '') {
+      setFilteredUsers(allUsers);
+    } else {
+      setFilteredUsers(
+        allUsers.filter(u =>
+          u.username.toLowerCase().includes(userSearchQuery.toLowerCase())
+        )
+      );
+    }
+  }, [userSearchQuery, allUsers]);
 
   // WebSocket setup
   useEffect(() => {
@@ -73,7 +108,6 @@ useEffect(() => {
     socket.on("receivePrivateMessage", (message) => {
       const senderId = typeof message.senderId === 'object' ? message.senderId._id : message.senderId;
       const receiverId = typeof message.receiverId === 'object' ? message.receiverId._id : message.receiverId;
-
       const otherUserId = senderId === user._id ? receiverId : senderId;
 
       setChatHistory((prev) => ({
@@ -139,10 +173,28 @@ useEffect(() => {
       });
 
       setInput('');
+
+      // refresh conversations list
+      const convRes = await axios.get(`${BASE_URL}/api/messages/conversations`, { withCredentials: true });
+      setConversation(convRes.data);
     } catch (err) {
       console.error("Send message error", err);
     }
   };
+
+  const handleSelectNewUser = (u) => {
+    setSelectedUserId(u._id);
+    setSelectedUsername(u.username);
+    setShowUserSearch(false);
+    setUserSearchQuery('');
+  };
+
+  // Filter existing conversations by search
+  const filteredConversations = conversation.filter((conv) => {
+    const otherUser = conv.participants.find(p => p._id !== user?._id);
+    if (!otherUser) return false;
+    return otherUser.username.toLowerCase().includes(search.toLowerCase());
+  });
 
   return (
     <div className="component-container">
@@ -150,28 +202,78 @@ useEffect(() => {
       <div id="inbox">
         {/* Contact List */}
         <div className="dm-container">
-          <div className="inbox-input">
-            <FaSearch className='inbox-icon' />
-            <input
-              type="text"
-              placeholder='Search for contacts'
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+          <div className="inbox-top-bar">
+            <div className="inbox-input">
+              <FaSearch className='inbox-icon' />
+              <input
+                type="text"
+                placeholder='Search conversations'
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+            <button
+              className="new-msg-btn"
+              title="New Message"
+              onClick={() => setShowUserSearch(prev => !prev)}
+            >
+              <FaEdit />
+            </button>
           </div>
+
+          {/* New Message User Search */}
+          {showUserSearch && (
+            <div className="user-search-panel">
+              <input
+                type="text"
+                placeholder="Search users..."
+                value={userSearchQuery}
+                onChange={(e) => setUserSearchQuery(e.target.value)}
+                autoFocus
+              />
+              <ul className="user-search-results">
+                {filteredUsers.length === 0 ? (
+                  <li className="no-users">No users found</li>
+                ) : (
+                  filteredUsers.map((u) => (
+                    <li key={u._id} onClick={() => handleSelectNewUser(u)}>
+                      <img src={u.profilephoto} alt={u.username} className="user-avatar" />
+                      <div>
+                        <p className="user-name">{u.username}</p>
+                        <p className="user-email">{u.email}</p>
+                      </div>
+                      {onlineUserList.includes(u._id) && <span className="online-dot" />}
+                    </li>
+                  ))
+                )}
+              </ul>
+            </div>
+          )}
+
+          {/* Conversations List */}
           <ul>
-            {conversation.map((conv, idx) => {
+            {filteredConversations.map((conv, idx) => {
               const otherUser = conv.participants.find(p => p._id !== user?._id);
               if (!otherUser) return null;
+              const isOnline = onlineUserList.includes(otherUser._id);
+              const isSelected = selectedUserId === otherUser._id;
               return (
                 <li
                   key={idx}
+                  className={isSelected ? 'active-conv' : ''}
                   onClick={() => {
                     setSelectedUserId(otherUser._id);
                     setSelectedUsername(otherUser.username);
                   }}
                 >
-                  {otherUser.username}
+                  <div className="conv-avatar-wrap">
+                    <img src={otherUser.profilephoto} alt={otherUser.username} className="user-avatar" />
+                    {isOnline && <span className="online-dot" />}
+                  </div>
+                  <div className="conv-info">
+                    <p className="user-name">{otherUser.username}</p>
+                    <p className="conv-last-msg">{conv.lastMessage?.message || 'Start a conversation'}</p>
+                  </div>
                 </li>
               );
             })}
@@ -181,18 +283,15 @@ useEffect(() => {
         {/* Chat Area */}
         <div className="dm-area">
           <div className="area-header">
-            <h2>{selectedUserId ? `Chatting with ${selectedUsername}` : "Select a User To Start Conversation!"}</h2>
+            <h2>{selectedUserId ? `Chatting with ${selectedUsername}` : "Select a user or start a new conversation"}</h2>
           </div>
 
           <div className="pvt-dm">
             {messages.map((msg, idx) => {
               const senderId = typeof msg.senderId === 'object' ? msg.senderId._id : msg.senderId;
-              const isSent = senderId === user._id;
+              const isSent = senderId === user?._id;
               return (
-                <div
-                  key={idx}
-                  className={`message ${isSent ? 'sent' : 'received'}`}
-                >
+                <div key={idx} className={`message ${isSent ? 'sent' : 'received'}`}>
                   <div className="msg-content">
                     <div className="text">{msg.message}</div>
                     <p>{new Date(msg.createdAt || Date.now()).toLocaleTimeString()}</p>
@@ -204,19 +303,21 @@ useEffect(() => {
           </div>
 
           {/* Send Box */}
-          <form onSubmit={handleSubmit} className="inbox-upload-container">
-            <FiUpload size={24} className='inbox-upload-icon' />
-            <input
-              type="text"
-              placeholder='Write Message'
-              className='inbox-upload-input'
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-            />
-            <button type="submit" className="inbox-button">
-              <FaPaperPlane />
-            </button>
-          </form>
+          {selectedUserId && (
+            <form onSubmit={handleSubmit} className="inbox-upload-container">
+              <FiUpload size={24} className='inbox-upload-icon' />
+              <input
+                type="text"
+                placeholder='Write Message'
+                className='inbox-upload-input'
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+              />
+              <button type="submit" className="inbox-button">
+                <FaPaperPlane />
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </div>

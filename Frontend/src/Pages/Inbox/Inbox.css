@@ -12,7 +12,6 @@
 }
 .inbox-input {
   width: 92%;
-  margin: 0.8em auto ;
   display: flex;
   border-radius: 8px;
   align-items: center;
@@ -96,23 +95,150 @@
 }
 
 
-/* CONTACT ITEM */
-.dm-container ul {
-  list-style: none;
-  padding: 0;
+/* TOP BAR */
+.inbox-top-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.8em;
+}
+.inbox-top-bar .inbox-input {
+  flex: 1;
   margin: 0;
 }
-
-.dm-container li {
-  padding: 1em;
+.new-msg-btn {
+  background: #00BFFF;
+  border: none;
+  border-radius: 8px;
   color: white;
+  padding: 0.7em 0.8em;
   cursor: pointer;
-  border-bottom: 1px solid #333;
-  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.new-msg-btn:hover {
+  background: #009fcc;
 }
 
+/* USER SEARCH PANEL */
+.user-search-panel {
+  padding: 0 0.8em 0.8em;
+}
+.user-search-panel input {
+  width: 100%;
+  padding: 0.7em;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #1f1f1f;
+  color: white;
+  outline: none;
+  box-sizing: border-box;
+}
+.user-search-panel input:focus {
+  border-color: #00BFFF;
+}
+.user-search-results {
+  list-style: none;
+  padding: 0;
+  margin: 0.4em 0 0;
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid #333;
+  border-radius: 8px;
+}
+.user-search-results li {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0.7em;
+  cursor: pointer;
+  border-bottom: 1px solid #222;
+  position: relative;
+}
+.user-search-results li:hover {
+  background: #1a1a1a;
+}
+.no-users {
+  color: #888;
+  text-align: center;
+  padding: 1em;
+  cursor: default !important;
+}
+
+/* AVATAR */
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* ONLINE DOT */
+.online-dot {
+  width: 9px;
+  height: 9px;
+  background: #00e676;
+  border-radius: 50%;
+  position: absolute;
+  right: 0.8em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.conv-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.conv-avatar-wrap .online-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: unset;
+  transform: none;
+}
+
+/* CONVERSATION ITEM */
+.dm-container li {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0.8em;
+  color: white;
+  cursor: pointer;
+  border-bottom: 1px solid #1a1a1a;
+  transition: background-color 0.2s ease;
+  position: relative;
+}
 .dm-container li:hover {
-  background-color: #1f1f1f;
+  background-color: #1a1a1a;
+}
+.dm-container li.active-conv {
+  background-color: #0d2a3a;
+  border-left: 3px solid #00BFFF;
+}
+.conv-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.user-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+.user-email {
+  font-size: 0.75rem;
+  color: #888;
+  margin: 0;
+}
+.conv-last-msg {
+  font-size: 0.75rem;
+  color: #888;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* MESSAGES */

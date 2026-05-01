@@ -123,8 +123,8 @@ const deleteUser = async (req, res) => {
 
     res.clearCookie("token", {
       httpOnly: true,
-      secure: true,
-      sameSite: "None",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
       path: "/"
     });
 
@@ -157,10 +157,21 @@ const getUserResources = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({ _id: { $ne: req.user._id } }).select("_id username email profilephoto");
+    return res.status(200).json(users);
+  } catch (err) {
+    console.error("Get all users error:", err.message);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 module.exports = {
     getuser,
     getselecteduser,
     updateuser,
     deleteUser,
-    getUserResources
+    getUserResources,
+    getAllUsers
 }
