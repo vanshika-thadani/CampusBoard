@@ -41,7 +41,7 @@ const register = async (req, res) => {
         username,
         email,
         password: hashedPassword,
-        profilephoto: DEFAULT_AVATAR
+        profilephoto: `https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=${encodeURIComponent(username)}&size=128`
     });
 
     newUser = await User.findById(newUser._id).select("-password");
@@ -77,7 +77,7 @@ const login = async (req, res) => {
 
         // fix broken profile photo from old local path
         if (!loggedInUser.profilephoto || loggedInUser.profilephoto.startsWith('src/assets')) {
-            loggedInUser.profilephoto = DEFAULT_AVATAR;
+            loggedInUser.profilephoto = `https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=${encodeURIComponent(loggedInUser.username)}&size=128`;
             await loggedInUser.save();
         }
 
