@@ -5,6 +5,8 @@ const generateToken = require('../utils/generateToken.js');
 
 const jwt = require("jsonwebtoken");
 
+const DEFAULT_AVATAR = 'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=User&size=128';
+
 const register = async (req, res) => {
     const { username, email, password, confirmPassword } = req.body;
 
@@ -38,7 +40,8 @@ const register = async (req, res) => {
     let newUser = await User.create({
         username,
         email,
-        password: hashedPassword
+        password: hashedPassword,
+        profilephoto: DEFAULT_AVATAR
     });
 
     newUser = await User.findById(newUser._id).select("-password");
@@ -71,6 +74,13 @@ const login = async (req, res) => {
             return res.status(400).json({ message: "Invalid email or password!" });
         }
         const loggedInUser = await User.findById(existingUser._id).select("-password");
+
+        // fix broken profile photo from old local path
+        if (!loggedInUser.profilephoto || loggedInUser.profilephoto.startsWith('src/assets')) {
+            loggedInUser.profilephoto = DEFAULT_AVATAR;
+            await loggedInUser.save();
+        }
+
         const token = generateToken(loggedInUser._id);
 
         res.cookie("token", token, {
