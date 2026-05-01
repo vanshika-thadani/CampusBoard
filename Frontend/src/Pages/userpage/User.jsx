@@ -3,6 +3,7 @@ import Sidebar from '../../Components/Sidebar/Sidebar';
 import './User.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../assets/Profile.jpg';
+const DEFAULT_AVATAR = 'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=User&size=128';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaCar, FaUsers, FaSearch, FaFolderOpen, FaUserAlt } from "react-icons/fa";
 import Carpoolcard from '../../Components/carpoolcards/Carpoolcard';
@@ -187,7 +188,7 @@ const User = () => {
                       src={
                         userdata.profilephoto && typeof userdata.profilephoto !== "string"
                           ? URL.createObjectURL(userdata.profilephoto)
-                          : user?.profilephoto || logo
+                          : user?.profilephoto || DEFAULT_AVATAR
                       }
                       alt={logo}
                       style={{

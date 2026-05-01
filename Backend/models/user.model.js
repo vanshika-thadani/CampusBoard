@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     profilephoto:{
         type : String,
         required:true,
-        default: 'src/assets/Profile.jpg'
+        default: 'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=User&size=128'
     },
     carpools:{
         type:[mongoose.Schema.Types.ObjectId],

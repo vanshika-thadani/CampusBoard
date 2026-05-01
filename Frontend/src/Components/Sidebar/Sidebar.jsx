@@ -11,6 +11,8 @@ import {
 } from "react-icons/fa";
 import "./Sidebar.css";
 import defaultAvatar from "../../assets/Profile.jpg";
+
+const DEFAULT_AVATAR = 'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=User&size=128';
 import { NavLink, Link } from "react-router-dom";
 import { useLogout } from "../../hooks/logouthooks/logouthook";
 import { useGetUser } from "../../hooks/user/usegetuser";
@@ -35,7 +37,7 @@ const Sidebar = () => {
         <div className="user-info">
           <Link to="/user" className="user-img">
             <img
-              src={user?.profilephoto || defaultAvatar}
+              src={user?.profilephoto || DEFAULT_AVATAR}
               alt="user profile"
             />
           </Link>
