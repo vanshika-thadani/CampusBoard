@@ -75,8 +75,10 @@ const login = async (req, res) => {
         }
         const loggedInUser = await User.findById(existingUser._id).select("-password");
 
-        // fix broken profile photo from old local path
-        if (!loggedInUser.profilephoto || loggedInUser.profilephoto.startsWith('src/assets')) {
+        // fix broken profile photo from old local path or old default avatar
+        if (!loggedInUser.profilephoto || 
+            loggedInUser.profilephoto.startsWith('src/assets') ||
+            loggedInUser.profilephoto.includes('name=User')) {
             loggedInUser.profilephoto = `https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=${encodeURIComponent(loggedInUser.username)}&size=128`;
             await loggedInUser.save();
         }
