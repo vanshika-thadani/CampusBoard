@@ -18,7 +18,7 @@ import { toast } from 'react-toastify'; // ✅ Toastify import
 const User = () => {
   const [selectedCategory, setSelectedCategory] = useState('profile');
   const navigate = useNavigate();
-  const { user, getUserprofile } = useGetUser();
+  const { user, getUserProfile } = useGetUser();
   const { updateUser, updateUserResponse } = useUpdateUser();
   const { deleteUser } = useDeleteUser();
   const { resources, refetchResources } = useUserResources();
